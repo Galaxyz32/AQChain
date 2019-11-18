@@ -1,0 +1,34 @@
+syntax = "proto3";
+package MSG;
+
+message MerkleNode{
+   string UserName=1;
+   string User2name=2;
+	double ValueOfMerkleNode=3;
+	string ContentHash=4;
+	string TimeStampOfContent=5;
+	 int32 TypeOfThis=6;
+}
+
+message Block{
+  int32 Index=1;
+  repeated MerkleNode BlockBody=2;
+  string	BlockCreater =3;
+  string	Hash          =4;
+  string	PrevBlockHash =5;
+  string	TimeStamp     =6;
+   	//MerkleRoot string
+}
+
+
+message User{
+ string UserName    =1  ;
+ string 	UserAddTime=2  ;
+ int32	UserFileNume     =3  ;
+ double	Contribution   =4  ;
+ double	Contribution1=5  ;
+ double	Contribution2 =6 ;
+ double	Contribution3 =7 ;
+ int64	Useronlion   =8;
+}
+

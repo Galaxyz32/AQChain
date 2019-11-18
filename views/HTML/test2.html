@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <link rel="stylesheet" href="css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        var stu =
+            { "UserName": "王五", "User2name": "男", "ValueOfMerkleNode": "19" ,"ContentHash":9,"TimeStampOfContent":"1","TypeOfThis":0}
+
+        $(document).ready(function() {//DOM加载完之后，该函数执行。DOM是html页面的标签树，
+            // DOM加载完是指：所有的html标签都已经展示到浏览器上了
+
+            window.addEventListener("load", function(evt) {
+
+                var output = document.getElementById("output");
+                var input = document.getElementById("input");
+                var ws2;
+                var print = function(message) {
+                    var d = document.createElement("div");//不断产生div
+                    d.innerHTML = message;
+                    output.appendChild(d);
+                };
+
+                var print2 = function (m) {//与获取MN有关
+                    var s = "";
+
+                    s = "<tr><td>" + m.UserName + "</td><td>" + m.User2name + "</td><td>" +
+                        m.ValueOfMerkleNode + "</td><td>" + m.ContentHash +"</td><td>" + m.TimeStampOfContent + "</td><td>" + m.TypeOfThis + "</td></tr>";
+                    $("#tab").append(s);
+                }
+
+                document.getElementById("open").onclick = function(evt) {
+
+                    if (ws2) {
+                        return false;
+                    }
+
+                    ws2 = new WebSocket("ws://localhost:7777/ws/set");
+                    ws2.onopen = function(evt) {
+                        print("OPEN");
+                        print2(stu)
+                    }
+                    ws2.onclose = function(evt) {
+                        print("CLOSE");
+                        ws = null;
+                    }
+                    ws2.onmessage = function(evt) {
+                        print("RESPONSE: " + evt.data);
+                        var objjson = eval("("+evt.data+")");
+
+                        print2(objjson)
+
+                    }
+                    ws2.onerror = function(evt) {
+                        print("ERROR: " + evt.data);
+                    }
+                    return false;
+                };
+                document.getElementById("send").onclick = function(evt) {
+                    if (!ws2) {
+                        return false;
+                    }
+                    print("SEND: " +input.value);
+                    ws2.send(input.value);
+                    return false;
+                };
+                document.getElementById("send2").onclick = function(evt) {
+                    if (!ws2) {
+                        return false;
+                    }
+                    print("SEND: " +input.value);
+                    ws2.send(input.value);
+                    return false;
+                };
+                document.getElementById("close").onclick = function(evt) {
+                    if (!ws2) {
+                        return false;
+                    }
+                    ws2.close();
+                    return false;
+                };
+
+
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron">
+                <h1>
+                    欢迎来到上传中心！
+                </h1>
+                <p>
+                    This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-large" href="#">了解更多</a>
+                </p>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <button type="button" class="btn btn-default" id="open">打开连接</button>
+                        </div>
+                        <div class="col-md-6 column">
+                            <button type="button" class="btn btn-default" id="close">关闭连接</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <p></p>
+            <form role="form">
+                <table>
+                    <tr>
+                        <td valign="top" width="50">
+                            <div class="form-group">
+                                <label for="exampleInputFile">请上传您的文件</label>
+                                <input type="file" id="exampleInputFile" onchange="document.getElementById('input').value=this.value"/>
+                                <input id="input" type="text">
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" />我已阅读<a href=" about.html">《安权链用户安全协议》</a></label>
+                            </div>
+                            <button type="submit" class="btn btn-default" id="send">上传</button>
+                            <button type="submit" class="btn btn-default" id="send2">上传</button>
+                        </td>
+                        <td valign="top" width="50">
+                            <div>
+                                <input id="output" style= "background-color:transparent;border:0;"></input>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <table class="table table-bordered table-hover" id="tab" >
+                <thead>
+                <tr>
+                    <th>
+                        创建者
+                    </th>
+                    <th>
+                        拥有者
+                    </th>
+                    <th>
+                        价格
+                    </th>
+                    <th>
+                        文件哈希
+                    </th>
+                    <th>
+                        时间戳
+                    </th>
+                    <th>
+                        类型
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="tab">
+                </tbody>
+            </table>
+            <div class="row clearfix">
+
+                <div class="col-md-6 column">
+                    <div class="row clearfix">
+                        <div class="col-md-4 column">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

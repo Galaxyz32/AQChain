@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传新作品</title>
+    <link rel="stylesheet" href="css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {//DOM加载完之后，该函数执行。DOM是html页面的标签树，
+                // DOM加载完是指：所有的html标签都已经展示到浏览器上了
+                window.addEventListener("load", function(evt) {
+
+                //建立ws
+                var ws2= new WebSocket("ws://localhost:7777/ws/set");
+
+                var EstabConn = function(evt) {
+
+                    ws2.onopen = function(evt) {
+                        document.getElementById("WelcomeTips").innerText="已连接"
+                        ws2.send("ShangChuan");
+                    }
+                    ws2.onclose = function(evt) {
+                        document.getElementById("WelcomeTips").innerText="连接已断开，请刷新页面重试"
+                        ws = null;
+                    }
+                    ws2.onmessage = function(evt) {
+                        var objjson = eval("("+evt.data+")");
+                        print2(objjson)
+
+                    }
+                    ws2.onerror = function(evt) {
+                        document.getElementById("WelcomeTips").innerText="连接出错"+ evt.data
+                    }
+                    return false;
+                };
+
+                var input = document.getElementById("input");
+
+                var print2 = function (m) {//与获取MN有关
+                    var s = "";
+                    console.info(m)
+                    console.info(m.UserName)
+
+                    s = "<tr><td>" + m.UserName + "</td><td>" + m.User2name + "</td><td>" +
+                        m.ValueOfMerkleNode + "</td><td>" + m.ContentHash +"</td><td>" + m.TimeStampOfContent + "</td><td>" + m.TypeOfThis + "</td></tr>";
+                    $("#tab").append(s);
+                }
+
+                document.getElementById("send").onclick = function(evt) {
+                    if (!ws2) {
+                        return false;
+                    }
+                    ws2.send(input.value);
+                    return false;
+                };
+
+
+                EstabConn()
+
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron">
+                <h1>
+                    欢迎来到上传中心！
+                </h1>
+                <p id="WelcomeTips">
+                    尚未建立与后端程序的连接.
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-large" href="#">了解更多</a>
+                </p>
+            </div>
+
+            <p></p>
+            <form role="form">
+                <table>
+                    <tr>
+                        <td valign="top" width="50">
+                            <div class="form-group">
+                                <label for="exampleInputFile">请上传您的文件</label>
+                                <input type="file" id="exampleInputFile" onchange="document.getElementById('input').value=this.value"/>
+                                <input id="input" type="text">
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" />我已阅读<a href=" about.html">《安权链用户安全协议》</a></label>
+                            </div>
+                            <button type="submit" class="btn btn-default" id="send">上传</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <table class="table table-bordered table-hover" id="tab" >
+                <thead>
+                <tr>
+                    <th>
+                        创建者
+                    </th>
+                    <th>
+                        拥有者
+                    </th>
+                    <th>
+                        价格
+                    </th>
+                    <th>
+                        文件哈希
+                    </th>
+                    <th>
+                        时间戳
+                    </th>
+                    <th>
+                        类型
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="tab">
+                </tbody>
+            </table>
+            <div class="row clearfix">
+
+                <div class="col-md-6 column">
+                    <div class="row clearfix">
+                        <div class="col-md-4 column">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

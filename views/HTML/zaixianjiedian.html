@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 网络节点在线情况- Layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./icheck/minimal/red.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo"> 安权链系统节点在线情况</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="jiedianku.html">注册节点列表</a></li>
+      <li class="layui-nav-item"><a href="zaixianjiedian.html">在线节点列表</a></li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="dengluzhuce.html">
+
+          登录
+        </a>
+
+      </li>
+      <li class="layui-nav-item"> <a href="dengluzhuce.html">
+
+              注册
+          </a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item"><a href="index.html">☆</a></li>
+        <li class="layui-nav-item">
+          <a class="" href="javascript:;">☆</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">☆</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">☆</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">☆</a>
+            </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">☆</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">☆</a>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <fieldset class="layui-elem-field">
+            <legend>在线节点查询</legend>
+            <div class="layui-field-box">
+              <form class="layui-form" action="">
+                <div class="layui-form-item" style="text-align:center;">
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input autocomplete="off" class="layui-input" placeholder="请输入ID" type="text" name="name" value="">
+                    </div>
+                  </div>
+                  <div class="layui-inline" style="text-align:left;">
+                    <div class="layui-input-inline">
+                      <button class="layui-btn"><i class="layui-icon">&#xe615;</i>查询</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <hr>
+              <div class="layui-btn-group">
+
+                  <button class="layui-btn layui-btn-xs dw-refresh">
+                      <i class="layui-icon">&#x1002;</i>刷新
+                  </button>
+              </div>
+              <hr>
+              <table class="layui-table">
+                  <colgroup>
+                      <col width="150">
+                      <col width="150">
+                      <col width="200">
+                      <col>
+                      <col>
+                  </colgroup>
+                  <thead>
+                      <tr>
+
+                      <th>用户名</th>
+                      <th>上线时刻</th>
+                          <th>本次在线时间</th>
+                          <th>累计在线时间</th>
+                      <th>用户知识产权数量</th>
+                          <th>知识产权贡献值</th>
+                          <th>交易所得贡献值</th>
+                          <th>在线时间贡献奖励</th>
+                      </tr> 
+                  </thead>
+                  <tbody>
+                      <tr>
+
+                      <td>Amy</td>
+                      <td>3月3日8:00</td>
+                      <td>16h</td>
+                          <td>290h</td>
+                          <td>9</td>
+                          <td>0.9</td>
+                          <td>0.2</td>
+                          <td>0.5</td>
+
+                      </tr>
+                      <tr>
+
+                          <td>Tony</td>
+                          <td>3月5日9:10</td>
+                          <td>1h</td>
+                          <td>20h</td>
+                          <td>19</td>
+                          <td>0.3</td>
+                          <td>2.2</td>
+                          <td>0.4</td>
+                      </tr>
+                      <tr>
+                          <td>Nancy</td>
+                          <td>3月7日10:11</td>
+                          <td>9h</td>
+                          <td>23h</td>
+                          <td>5</td>
+                          <td>1.3</td>
+                          <td>0.2</td>
+                          <td>0.9</td>
+
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+        </fieldset>
+    </div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./icheck/icheck.js"></script>
+<script type="text/javascript" src="./javascript/dw.js"></script>
+</body>
+</html>

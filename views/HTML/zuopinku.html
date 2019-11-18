@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 用户作品库 - Layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+    <link  rel="stylesheet" href="css/layer-animate.css"/>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">欢迎使用安权链系统</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="yonghuzhongxin.html">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          薛瑞昕
+        </a>
+
+      </li>
+      <li class="layui-nav-item"><a href="sousuokuang.html">全库搜索</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item"><a class="layui-this" href="zuopinku.html">保全文件</a></li>
+
+
+
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <fieldset class="layui-elem-field">
+            <legend>已保全文件</legend>
+            <div class="layui-field-box">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                        <th>名称</th>
+                        <th>上传时间</th>
+                        <th>数字指纹</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>《贤心》</td>
+                        <td>2016-11-29</td>
+                        <td>s394857f7364hfrrif00384ddddd563gdj
+                            &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                            <a  class ="btn btn3" style="color: #0b96e5"   >点击此处查看保全证书</a></td>
+                        </tr>
+                        <tr>
+                        <td>《许闲心》</td>
+                        <td>2016-11-28</td>
+                            <td>73djf7f7364hfrrif036489rhdjffj84563gdj
+                                &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                <a  style="color: #0b96e5"  href="pdf.html" >点击此处查看保全证书</a></td>
+                        </tr>
+                        <tr>
+                        <td>《sentsin》</td>
+                        <td>2016-11-27</td>
+                            <td>dsfdf8347df38829ejhfduu3ru3qdf23442
+                                &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                <a  style="color: #0b96e5"  href="pdf.html" >点击此处查看保全证书</a></td>
+                        </tr>
+                        <tr>
+                            <td>《太阳2》</td>
+                            <td>2017-11-29</td>
+                            <td>人生就像一场修行
+                                &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                <a  style="color: #0b96e5"  href="pdf.html" >点击此处查看保全证书</a></td>
+                        </tr>
+                        <tr>
+                            <td>《月亮》</td>
+                            <td>2017-11-28</td>
+                            <td>于千万人之中遇见你所遇见的人
+                                &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                <a  style="color: #0b96e5"  href="pdf.html" >点击此处查看保全证书</a></td>
+                        </tr>
+                        <tr>
+                            <td>《星星》</td>
+                            <td>2017-11-27</td>
+                            <td>Life is either a daring adventure or nothing
+                                &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                                <a  style="color: #0b96e5"  href="pdf.html" >点击此处查看保全证书</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+
+                  </tbody>
+              </table>
+          </div>
+      </fieldset>
+    </div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+
+  </div>
+</div>
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./javascript/index.js"></script>
+
+<script type="text/javascript" src="js/method.js"></script>
+<script type="text/javascript">
+    $(".btn3").on("click",function(){
+        var obj={
+            type:"showSweetAlert",
+            title:"弹框标题",
+            content:"<div>新区块还未生成，请稍候再来",
+            area:["500px","auto"],
+            btn:["确定",0]
+        };
+        method.msg_layer(obj);
+    });
+
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>
